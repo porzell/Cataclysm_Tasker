@@ -18,7 +18,7 @@ A taskfunc_t must implement a message handler that is split into responses to th
 #### 1. TASK_INIT
 Called on task creation.  Allocate and initialize task_data here if used and not pre-allocated before call to create_task().
 #### 2. TASK_TICK
-Called whenever next_update >= the current game time.  Be sure to set next_update at the end!
+Called whenever next_update >= the current game time.  Be sure to set next_update at the end, or your task will not update!
 #### 3. TASK_CLEANUP
 Called immediately before task deletion and removal from task list.  Deinit and deallocate task_data here if used.
 
@@ -28,4 +28,9 @@ Called immediately before task deletion and removal from task list.  Deinit and 
 - Tasks can also deschedule themselves immediately by returning TASK_FINISHED.
 
 ## Future work
-An alternate interrupt-scheduled version of the scheduler for use in real-time applications is in the works currently. In this system, tasks will still have the opportunity to yield, however, will be interrupted if they do not yield before their individually set timeslice "quota" or a higher priority task requires an update.
+### Fixing priority system
+The priority system needs to be rewritten, and because the task system is currently "cooperative", only really is useful for determining the order that tasks are brought to focus in.
+### A better task list data structure
+The task list structure is currently a singly-linked list.
+### Possibility for real-time capabilities
+An alternate timer interrupt-scheduled version of the scheduler for use in real-time applications is in the works. In this system, tasks still have the opportunity to yield, however, will be interrupted if they do not yield within their respective set timeslice "quotas" or in the event of a higher priority task requiring an update.
