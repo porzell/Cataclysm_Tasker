@@ -25,7 +25,7 @@ Called immediately before task deletion and removal from task list.  Deinit and 
 ### Info
 - Setting is_moribund to 1 will cause the task handler to call the task function with a TASK_CLEANUP message, then remove it from the list.
 - This allows a task to deschedule itself in an orderly and well-behaved fashion.
-- Tasks can also deschedule themselves immediately by returning TASK_FINISHED.
+- Tasks can also deschedule themselves in a more immediate fashion by returning TASK_FINISHED and should take care to free all allocated resources before doing so.
 
 ## Future work
 ### Fixing priority system
