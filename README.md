@@ -13,11 +13,11 @@ It is primarily intended as a barebones system for running multiple things witho
 
 ## Task duties:
 A taskfunc_t must implement a message handler that is split into responses to three messages:
-1. TASK_INIT
+#### 1. TASK_INIT
 Called on task creation.  Allocate and initialize task_data here if used and not pre-allocated before call to create_task().
-2. TASK_TICK
+#### 2. TASK_TICK
 Called whenever next_update >= the current game time.  Be sure to set next_update at the end!
-3. TASK_CLEANUP
+#### 3. TASK_CLEANUP
 Called immediately before task deletion and removal from task list.  Deinit and deallocate task_data here if used.
 
 ### Info
